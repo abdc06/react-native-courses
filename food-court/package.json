@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -14,14 +14,8 @@
     "@react-navigation/drawer": "^7.1.1",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
-    "expo": "~52.0.26",
-    "expo-app-loading": "^2.1.1",
-    "expo-dev-client": "~5.0.9",
-    "expo-font": "~13.0.3",
-    "expo-linear-gradient": "~14.0.2",
-    "expo-splash-screen": "^0.29.20",
+    "expo": "~52.0.27",
     "expo-status-bar": "~2.0.1",
-    "expo-system-ui": "^4.0.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.6",
