@@ -28,9 +28,9 @@ function ExpensesOverview() {
         options={{
           title: 'Recent Expenses',
           tabBarLabel: 'Recent',
-          tabBarIcon: ({ color, size }) => {
-            <Ionicons name="hourglass" size={size} color={color} />;
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="hourglass" color={color} size={size} />
+          ),
         }}
       />
       <BottomTabs.Screen
@@ -39,9 +39,9 @@ function ExpensesOverview() {
         options={{
           title: 'All Expenses',
           tabBarLabel: 'All Expenses',
-          tabBarIcon: ({ color, size }) => {
-            <Ionicons name="calendar" size={size} color={color} />;
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="calendar" color={color} size={size} />
+          ),
         }}
       />
     </BottomTabs.Navigator>
@@ -54,7 +54,11 @@ export default function App() {
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="ExpensesOverview" component={ExpensesOverview} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="ExpensesOverview"
+            component={ExpensesOverview}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="ManageExpenses" component={ManageExpenses} />
         </Stack.Navigator>
       </NavigationContainer>
