@@ -1,10 +1,10 @@
 import { useLayoutEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import ExpenseForm from '../components/ManageExpense/ExpenseForm';
 import IconButton from '../components/UI/IconButton';
 import { GlobalStyles } from '../constans/styles';
-import Button from '../components/UI/Button';
-import { useDispatch } from 'react-redux';
-import { deleteExpense } from '../store/expenses';
+import { addExpense, updateExpense, deleteExpense } from '../store/expenses';
 
 function ManageExpense({ route, navigation }) {
   const dispatch = useDispatch();
@@ -27,8 +27,14 @@ function ManageExpense({ route, navigation }) {
     navigation.goBack();
   }
 
-  function confirmHandler() {
+  function confirmHandler(expenseData) {
     if (!isEditing) {
+      //ADD
+      console.log(expenseData);
+      dispatch(addExpense(expenseData));
+    } else {
+      //UPDATE
+      dispatch(updateExpense({ id: editedExpenseId, data: expenseData }));
     }
 
     navigation.goBack();
@@ -36,14 +42,11 @@ function ManageExpense({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttons}>
-        <Button style={styles.button} mode="flat" onPress={cancelHandler}>
-          Cancel
-        </Button>
-        <Button style={styles.button} onPress={confirmHandler}>
-          {isEditing ? 'Update' : 'Add'}
-        </Button>
-      </View>
+      <ExpenseForm
+        isEditing={isEditing}
+        onCancel={cancelHandler}
+        onSubmit={confirmHandler}
+      />
       {isEditing && (
         <View style={styles.deleteContainer}>
           <IconButton
@@ -72,14 +75,5 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderTopColor: GlobalStyles.colors.primary200,
     alignItems: 'center',
-  },
-  buttons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    minWidth: 120,
-    marginHorizontal: 8,
   },
 });

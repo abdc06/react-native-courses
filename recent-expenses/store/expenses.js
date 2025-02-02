@@ -38,7 +38,11 @@ const expensesSlice = createSlice({
   initialState: DUMMY_EXPENSES,
   reducers: {
     addExpense: (state, action) => {
-      const addItem = { ...action.payload, id: new Date().toString() };
+      const id = Math.random().toString();
+      const addItem = {
+        ...action.payload,
+        id: id,
+      };
       state.push(addItem);
     },
     updateExpense: (state, action) => {
